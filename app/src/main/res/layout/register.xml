@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ScrollView -->
+    <!--android:id="@+id/myScrollView"-->
+    <!--android:fillViewport="true"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="7"-->
+    <!--android:overScrollMode="never"-->
+    <!--android:scrollbars="none">-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        android:weightSum="1"
+        >
+
+        <EditText
+            android:drawableLeft="@android:drawable/ic_menu_myplaces"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/register_edit_name"
+            android:layout_alignParentTop="true"
+            android:hint="请输入您的用户名"
+            android:layout_alignLeft="@+id/register_edit_pwd_new"
+            android:layout_alignStart="@+id/register_edit_pwd_new"
+            android:layout_alignRight="@+id/register_edit_pwd_new"
+            android:layout_alignEnd="@+id/register_edit_pwd_new" />
+
+        <!--
+
+        <EditText android:id="@+id/edt_operator_name" style="@style/syncEditText"
+            android:hint="@string/hint_operator_name" />
+        <ImageView android:id="@+id/syncOperatorImg" style="@style/syncImageView"
+            android:layout_alignLeft="@+id/edt_operator_name"
+            android:layout_alignTop="@+id/edt_operator_name"
+            android:layout_alignBottom="@+id/edt_operator_name" android:src="@drawable/sync_operator" />
+    -->
+        <EditText
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/register_edit_stdID"
+            android:hint="请输入您的学号"
+            android:layout_below="@+id/register_edit_name"
+            android:layout_alignRight="@+id/register_edit_name"
+            android:layout_alignEnd="@+id/register_edit_name"
+            android:layout_alignLeft="@+id/register_edit_name"
+            android:layout_alignStart="@+id/register_edit_name" />
+
+        <EditText
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/register_edit_phone"
+            android:hint="请输入您的电话号码"
+            android:layout_below="@+id/register_edit_stdID"
+            android:layout_alignRight="@+id/register_edit_stdID"
+            android:layout_alignEnd="@+id/register_edit_stdID"
+            android:layout_alignLeft="@+id/register_edit_stdID"
+            android:layout_alignStart="@+id/register_edit_stdID" />
+
+        <EditText
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/register_edit_email"
+            android:hint="请输入您的邮箱"
+            android:layout_below="@+id/register_edit_phone"
+            android:layout_alignRight="@+id/register_edit_phone"
+            android:layout_alignEnd="@+id/register_edit_phone"
+            android:layout_alignLeft="@+id/register_edit_phone"
+            android:layout_alignStart="@+id/register_edit_phone" />
+        <EditText
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/register_edit_pwd_old"
+            android:hint="请输入您的密码"
+            android:layout_below="@+id/register_edit_email"
+            android:layout_alignRight="@+id/register_edit_email"
+            android:layout_alignEnd="@+id/register_edit_email"
+            android:layout_alignLeft="@+id/register_edit_email"
+            android:layout_alignStart="@+id/register_edit_email" />
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:id="@+id/register_btn_cancel"
+            android:textSize="20dp"
+            android:background="#f71818"
+            android:layout_below="@+id/register_btn_sure"
+            android:layout_alignLeft="@+id/register_btn_sure"
+            android:layout_alignStart="@+id/register_btn_sure"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/register_edit_pwd_new"
+            android:layout_below="@+id/register_edit_pwd_old"
+            android:layout_centerHorizontal="true"
+            android:hint="请确认您的密码" />
+
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:id="@+id/register_btn_sure"
+            android:textSize="20dp"
+            android:background="#1cf718"
+            android:layout_below="@+id/register_edit_pwd_new"
+            android:layout_alignLeft="@+id/register_edit_pwd_new"
+            android:layout_alignStart="@+id/register_edit_pwd_new"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
+<!--</ScrollView>-->
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/NameT"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="Name" />-->
+
+    <!--<EditText-->
+    <!--android:id="@+id/Name"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:hint="NAME" />-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<TextView-->
+    <!--android:id="@+id/PswT"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="Psw"/>-->
+    <!--<EditText-->
+    <!--android:id="@+id/PSW"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:hint="PSW"/>-->
+
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/SexualT"-->
+    <!--android:layout_width="160dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:text="Sexual" />-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="80dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/man"-->
+    <!--android:text="man"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_gravity="center"/>-->
+    <!--<CheckBox-->
+    <!--android:layout_width="80dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/women"-->
+    <!--android:text="women"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_gravity="center"/>-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<TextView-->
+    <!--android:id="@+id/AgeT"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="Age"-->
+    <!--/>-->
+    <!--<EditText-->
+    <!--android:id="@+id/Age"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:hint="Age" />-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<TextView-->
+    <!--android:id="@+id/DepartmentT"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="Department"-->
+    <!--/>-->
+    <!--<EditText-->
+    <!--android:id="@+id/Department"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:hint="Department" />-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<TextView-->
+    <!--android:id="@+id/StudentNumT"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="StudentNum"-->
+    <!--/>-->
+    <!--<EditText-->
+    <!--android:id="@+id/StudentNum"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:hint="StudentNum" />-->
+    <!--</LinearLayout>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/Finish"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Registe"-->
+    <!--android:layout_gravity="center"-->
+    <!--/>-->
+
+    <!--</LinearLayout>-->
