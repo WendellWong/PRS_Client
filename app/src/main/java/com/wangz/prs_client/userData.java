@@ -5,6 +5,7 @@ public class userData {
     private int StdId;
     private String name;
     private String email;
+    private String jwt;
     private int phone;
     private int role;
     public int getId() {
@@ -45,6 +46,12 @@ public class userData {
     }
     public void setRole(int role) {
         this.role = role;
+    }
+    public String getJwt(){
+        return jwt;
+    }
+    public void setJwt(String jwt){
+        this.jwt =jwt;
     }
     @Override
     public String toString() {

@@ -129,8 +129,9 @@ public class Login extends Activity {                 //登录界面活动
 //            parseJsonWithJsonObject(responseData);
                         JSONObject jsonObject = new JSONObject(responseData);
                         String result = jsonObject.getString("result");
-                        String jwt = jsonObject.getString("jwt");                            //获取jwt
-//                        userData userData =new userData();                                          //获取userData
+                        userData userData =new userData();
+                        userData.setJwt(jsonObject.getString("jwt")) ;                            //获取jwt
+       //获取userData
 //                        userData.setId(jsonObject.getInt("id"));
 //                        userData.setStdId(jsonObject.getInt("stdId"));
 //                        userData.setName(jsonObject.getString("name"));
