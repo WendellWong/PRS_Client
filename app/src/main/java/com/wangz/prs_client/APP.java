@@ -74,14 +74,48 @@ public class APP extends AppCompatActivity {
 
             //为内容视图加载新的Fragment
             Bundle bd = new Bundle() ;
+            String selected_item = "selected_item";
             bd.putString(ContentFragment.SELECTED_ITEM,menuDrawerAdapter.getItem(position).menuTitle);
-
-            Fragment contentFragment = new ContentFragment( ) ;
-            contentFragment.setArguments(bd);
-
+            bd.putString(selected_item,menuDrawerAdapter.getItem(position).menuTitle);
             FragmentManager fragmentManager =getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.content_frame, contentFragment).commit();
+
+//            Fragment contentFragment = new ContentFragmentManager( ) ;  //新建Fragment
+//            contentFragment.setArguments(bd);
+//            transaction.replace(R.id.content_frame, contentFragment);
+
+            //替换Fragment
+            switch ((String)bd.get(selected_item)){
+                case "管理":
+                    Fragment contentFragment = new ContentFragmentManager( ) ;
+                    contentFragment.setArguments(bd);
+
+
+                    transaction.replace(R.id.content_frame, contentFragment);
+                    break;
+                case "推荐":
+                    Fragment contentFragment1 = new ContentFragment( ) ;
+                    contentFragment1.setArguments(bd);
+
+
+                    transaction.replace(R.id.content_frame, contentFragment1);
+                    break;
+                case "发现":
+                    Fragment contentFragment2 = new ContentFragment( ) ;
+                    contentFragment2.setArguments(bd);
+                    transaction.replace(R.id.content_frame, contentFragment2);
+                    break;
+                case "交易":
+                    Fragment contentFragment3 = new ContentFragment( ) ;
+                    contentFragment3.setArguments(bd);
+                    transaction.replace(R.id.content_frame, contentFragment3);
+                    break;
+
+                default:
+                    break;
+            }
+            transaction.commit();
+
 
             //将选中的菜单项置为高亮
             menuDrawer.setItemChecked(position, true);

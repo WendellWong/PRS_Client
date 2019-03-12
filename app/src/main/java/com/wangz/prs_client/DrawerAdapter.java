@@ -3,15 +3,16 @@ package com.wangz.prs_client;
 /**
  * Created by WZ on 2018/12/9.
  */
-        import java.util.ArrayList;
-        import java.util.List;
 
-        import android.content.Context;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.BaseAdapter;
-        import android.widget.TextView;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**定义菜单项类*/
 class TuiCoolMenuItem {
@@ -25,6 +26,7 @@ class TuiCoolMenuItem {
     }
 
 }
+
 /**自定义设置侧滑菜单ListView的Adapter*/
 public class DrawerAdapter extends BaseAdapter{
 
