@@ -132,12 +132,14 @@ public class Login extends Activity {                 //登录界面活动
                         userData userData =new userData();
                         userData.setJwt(jsonObject.getString("jwt")) ;                            //获取jwt
        //获取userData
-//                        userData.setId(jsonObject.getInt("id"));
-//                        userData.setStdId(jsonObject.getInt("stdId"));
-//                        userData.setName(jsonObject.getString("name"));
-//                        userData.setEmail(jsonObject.getString("email"));
-//                        userData.setPhone(jsonObject.getInt("phone"));
-//                        userData.setRole(jsonObject.getInt("role"));
+                        String userString =jsonObject.getString("user");
+                        JSONObject jsonuser = new JSONObject(userString);
+                        userData.setId(jsonuser.getInt("id"));
+                        userData.setStdId(jsonuser.getInt("stdId"));
+                        userData.setName(jsonuser.getString("name"));
+                        userData.setEmail(jsonuser.getString("email"));
+                        userData.setPhone(jsonuser.getInt("phone"));
+                        userData.setRole(jsonuser.getInt("role"));
                         if (result.equals("success")) {                                             //返回1说明用户名和密码均正确
                             //保存用户名和密码
                             editor.putString("USER_NAME", userName);
