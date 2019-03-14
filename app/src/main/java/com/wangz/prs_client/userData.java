@@ -5,7 +5,7 @@ public class userData {
     private int StdId;
     private String name;
     private String email;
-    private static String jwt;
+    private String jwt;
     private int phone;
     private int role;
     public int getId() {
@@ -47,7 +47,7 @@ public class userData {
     public void setRole(int role) {
         this.role = role;
     }
-    public static String getJwt(){
+    public String getJwt(){
         return jwt;
     }
     public void setJwt(String jwt){

@@ -2,12 +2,17 @@ package com.wangz.prs_client;
 
 import android.app.Activity;
 import android.app.ListFragment;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +50,7 @@ public class ContentFragmentManager extends ListFragment {
     ListView list;
 
         private SimpleAdapter adapter;
+        public static List<UserProperty.PayloadBean> payload = new ArrayList<>();
 
 
 
@@ -59,51 +65,81 @@ public class ContentFragmentManager extends ListFragment {
 
 
         public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    @Override
+        @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            //发送占用物品查询请求
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                try {
-                    OkHttpClient client = new OkHttpClient();
-                    JSONObject obj = new JSONObject();
-                    obj.put("jwt", userData.getJwt());
-                    String jsonobj = obj.toString();
-                    RequestBody body = RequestBody.create(JSON, jsonobj);
-                    Request request = new Request.Builder()
+
+        //发送占用物品查询请求
+            new Thread(new Runnable() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                @Override
+                public void run() {
+
+                    try {
+                        OkHttpClient client = new OkHttpClient();
+                        JSONObject obj = new JSONObject();
+                        String pos ="0";
+                        obj.put("jwt", Login.userData.getJwt());
+                        obj.put("pos",pos);
+                        String jsonobj = obj.toString();
+                        RequestBody body = RequestBody.create(JSON, jsonobj);
+                        Request request = new Request.Builder()
                             .url("http://47.100.99.193:80/php/query/UserProperty.php")
                             .post(body)
                             .build();
-                    Response response = client.newCall(request).execute();
-                    String responseData = response.body().string();
+                        Response response = client.newCall(request).execute();
+                        String responseData = response.body().string();
 //            parseJsonWithJsonObject(responseData);
-                    JSONObject jsonObject = new JSONObject(responseData);
-                    String result = jsonObject.getString("result");
-                    if(result.equals("success")){
-                        UserProperty userProperty = new UserProperty();
-                        String propertyString = jsonObject.getString("payload");
-                        JSONArray propertyArray = new JSONArray(propertyString);
-                        UserProperty.PayloadBean payloadBean = new UserProperty.PayloadBean();
-                        List<UserProperty.PayloadBean> payload = new ArrayList<>();
-                        payload = (List)JSON.parseArray(propertyArray, UserProperty.PayloadBean.class);
+                        JSONObject jsonObject = new JSONObject(responseData);
+                        String result = jsonObject.getString("result");
+                        if(result.equals("success")){
+                            UserProperty userProperty = new UserProperty();
+                            String propertyString = jsonObject.getString("payload");
+                            JSONArray propertyArray = new JSONArray(propertyString);
+//                            List<UserProperty.PayloadBean> payload = new ArrayList<>();
+                            for (int i = 0; i < propertyArray.length(); ++i) {
+                                UserProperty.PayloadBean payloadBean = new UserProperty.PayloadBean();
+                                JSONObject token = propertyArray.getJSONObject(i);
+                                payloadBean.setId(Integer.parseInt(token.getString("id")));
+                                payloadBean.setLocation(Integer.parseInt(token.getString("location")));
+                                payloadBean.setName(token.getString("name"));
+                                payloadBean.setOccupier(Integer.parseInt(token.getString("occupier")));
+                                payloadBean.setType(Integer.parseInt(token.getString("type")));
+                                payloadBean.setStatus(Integer.parseInt(token.getString("status")));
+                                payload.add(payloadBean);
+                            }
+                        }
+                        else if(result.equals("fail")){
+                            String failcode =jsonObject.getString("code");
+                            if(failcode.equals("74")){
+                                Looper.prepare();
+                                Toast.makeText(getContext(), getString(R.string.noproperty), Toast.LENGTH_SHORT).show();  //没有物品提示
+                                Looper.loop();
+                            }
+                        }
+                    } catch (JSONException e) {
+                    e.printStackTrace();
+                    } catch (IOException e) {
+                    e.printStackTrace();
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
-            }
-        }).start();
+            }).start();
 
-            String[] listItem = { "房间", "床位", "储物柜", "休息间", "卫生间" };
-            int[] iconItem = { R.drawable.logo, R.drawable.logo,
-                    R.drawable.logo, R.drawable.logo,
-                    R.drawable.logo };
-            String[] listButton = {"解锁","解锁","解锁","解锁","解锁"};
+            String[] listItem = new String[payload.size()];
+            int[] iconItem = new int[payload.size()];
+            String[] listButton =new String[payload.size()];
+            for (int i=0;i< payload.size();i++){
+                listItem[i]=payload.get(i).getName();
+                iconItem[i]= R.drawable.logo;
+                listButton[i]=getString(R.string.unlock);
+            }
+//            String[] listItem = {"1","2","3","4","5"};
+
+//            int[] iconItem = { R.drawable.logo, R.drawable.logo,
+//                    R.drawable.logo, R.drawable.logo,
+//                    R.drawable.logo };
+//            String[] listButton = {"解锁","解锁","解锁","解锁","解锁"};
             adapter = new SimpleAdapter(getActivity(), getData(listItem, iconItem,listButton),
                     R.layout.listview_manager, new String[] { "name", "icon" ,"button"},
                     new int[] { R.id.functionName, R.id.functionIcon ,R.id.functionButton});
@@ -118,7 +154,7 @@ public class ContentFragmentManager extends ListFragment {
 
         private List<? extends Map<String, ?>> getData(String[] strs, int[] icon,String[] butt) {
             List<Map<String, Object>> list = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < payload.size(); i++) {
                 Map<String, Object> map = new HashMap<>();
                 map.put("name", strs[i]);
                 map.put("icon", icon[i]);

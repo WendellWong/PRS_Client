@@ -3,6 +3,7 @@ package com.wangz.prs_client;
 import java.util.List;
 
 public class UserProperty {
+
     private List<PayloadBean> payload;
 
     public List<PayloadBean> getPayload() {
@@ -23,18 +24,18 @@ public class UserProperty {
          * status : 1
          */
 
-        private String id;
+        private int id;
         private String name;
-        private String type;
-        private String occupier;
-        private String location;
-        private String status;
+        private int type;
+        private int occupier;
+        private int location;
+        private int status;
 
-        public String getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
         }
 
@@ -46,35 +47,35 @@ public class UserProperty {
             this.name = name;
         }
 
-        public String getType() {
+        public int getType() {
             return type;
         }
 
-        public void setType(String type) {
+        public void setType(int type) {
             this.type = type;
         }
 
-        public String getOccupier() {
+        public int getOccupier() {
             return occupier;
         }
 
-        public void setOccupier(String occupier) {
+        public void setOccupier(int occupier) {
             this.occupier = occupier;
         }
 
-        public String getLocation() {
+        public int getLocation() {
             return location;
         }
 
-        public void setLocation(String location) {
+        public void setLocation(int location) {
             this.location = location;
         }
 
-        public String getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(int status) {
             this.status = status;
         }
     }

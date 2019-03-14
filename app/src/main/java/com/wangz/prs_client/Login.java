@@ -42,7 +42,7 @@ public class Login extends Activity {                 //登录界面活动
     private View loginSuccessView;
     private TextView loginSuccessShow;
     private TextView mChangepwdText;
-
+    public static userData userData =new userData();
 
 
     @Override
@@ -129,7 +129,7 @@ public class Login extends Activity {                 //登录界面活动
 //            parseJsonWithJsonObject(responseData);
                         JSONObject jsonObject = new JSONObject(responseData);
                         String result = jsonObject.getString("result");
-                        userData userData =new userData();
+//                        userData userData =new userData();
                         userData.setJwt(jsonObject.getString("jwt")) ;                            //获取jwt
        //获取userData
                         String userString =jsonObject.getString("user");
