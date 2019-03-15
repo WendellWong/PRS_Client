@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ContentFragmentManager"></activity>
+        <activity android:name=".ContentFragmentTrans"></activity>
+        <activity android:name=".ContentFragmentManager" />
         <activity android:name=".Register" />
         <activity
             android:name=".APP"

@@ -42,7 +42,7 @@ public class Login extends Activity {                 //登录界面活动
     private View loginSuccessView;
     private TextView loginSuccessShow;
     private TextView mChangepwdText;
-    public static userData userData =new userData();
+    public static userData userData =new userData(); //全局userData 方便读取jwt
 
 
     @Override

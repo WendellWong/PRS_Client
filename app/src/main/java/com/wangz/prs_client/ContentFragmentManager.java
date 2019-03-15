@@ -32,25 +32,10 @@ import okhttp3.Response;
 
 public class ContentFragmentManager extends ListFragment {
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//    }
-//
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.content_fragment_manager, null);
-//        return view;
-//    }
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//    }
-
     ListView list;
+    private SimpleAdapter adapter;
+    public  List<UserProperty > payload = new ArrayList<>();
 
-        private SimpleAdapter adapter;
-        public static List<UserProperty.PayloadBean> payload = new ArrayList<>();
 
 
 
@@ -71,7 +56,7 @@ public class ContentFragmentManager extends ListFragment {
 
 
         //发送占用物品查询请求
-            new Thread(new Runnable() {
+        Thread thread =  new Thread(new Runnable() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void run() {
@@ -90,16 +75,15 @@ public class ContentFragmentManager extends ListFragment {
                             .build();
                         Response response = client.newCall(request).execute();
                         String responseData = response.body().string();
-//            parseJsonWithJsonObject(responseData);
                         JSONObject jsonObject = new JSONObject(responseData);
                         String result = jsonObject.getString("result");
                         if(result.equals("success")){
                             UserProperty userProperty = new UserProperty();
                             String propertyString = jsonObject.getString("payload");
                             JSONArray propertyArray = new JSONArray(propertyString);
-//                            List<UserProperty.PayloadBean> payload = new ArrayList<>();
+
                             for (int i = 0; i < propertyArray.length(); ++i) {
-                                UserProperty.PayloadBean payloadBean = new UserProperty.PayloadBean();
+                                UserProperty payloadBean = new UserProperty();
                                 JSONObject token = propertyArray.getJSONObject(i);
                                 payloadBean.setId(Integer.parseInt(token.getString("id")));
                                 payloadBean.setLocation(Integer.parseInt(token.getString("location")));
@@ -119,12 +103,18 @@ public class ContentFragmentManager extends ListFragment {
                             }
                         }
                     } catch (JSONException e) {
-                    e.printStackTrace();
+                        e.printStackTrace();
                     } catch (IOException e) {
-                    e.printStackTrace();
+                        e.printStackTrace();
                     }
                 }
-            }).start();
+            });
+            thread.start();
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             String[] listItem = new String[payload.size()];
             int[] iconItem = new int[payload.size()];
@@ -134,12 +124,6 @@ public class ContentFragmentManager extends ListFragment {
                 iconItem[i]= R.drawable.logo;
                 listButton[i]=getString(R.string.unlock);
             }
-//            String[] listItem = {"1","2","3","4","5"};
-
-//            int[] iconItem = { R.drawable.logo, R.drawable.logo,
-//                    R.drawable.logo, R.drawable.logo,
-//                    R.drawable.logo };
-//            String[] listButton = {"解锁","解锁","解锁","解锁","解锁"};
             adapter = new SimpleAdapter(getActivity(), getData(listItem, iconItem,listButton),
                     R.layout.listview_manager, new String[] { "name", "icon" ,"button"},
                     new int[] { R.id.functionName, R.id.functionIcon ,R.id.functionButton});
