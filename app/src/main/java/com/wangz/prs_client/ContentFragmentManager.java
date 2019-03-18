@@ -1,6 +1,7 @@
 package com.wangz.prs_client;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Build;
 import android.os.Bundle;
@@ -131,10 +132,10 @@ public class ContentFragmentManager extends ListFragment {
             //button解锁 待完善
 
         }
-        @Override
-        public void onListItemClick(ListView l, View v, int position, long id) {
-            super.onListItemClick(l, v, position, id);
-        }
+//        @Override
+//        public void onListItemClick(ListView l, View v, int position, long id) {
+//            super.onListItemClick(l, v, position, id);
+//        }
 
         private List<? extends Map<String, ?>> getData(String[] strs, int[] icon,String[] butt) {
             List<Map<String, Object>> list = new ArrayList<>();

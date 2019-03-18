@@ -94,7 +94,7 @@ public class APP extends AppCompatActivity {
                     transaction.replace(R.id.content_frame, contentFragment);
                     break;
                 case "推荐":
-                    Fragment contentFragment1 = new ContentFragmentTrans( ) ;
+                    Fragment contentFragment1 = new ContentFragment( ) ;
                     contentFragment1.setArguments(bd);
 
 
@@ -106,7 +106,7 @@ public class APP extends AppCompatActivity {
                     transaction.replace(R.id.content_frame, contentFragment2);
                     break;
                 case "交易":
-                    Fragment contentFragment3 = new ContentFragment( ) ;
+                    Fragment contentFragment3 = new ContentFragmentTrans( ) ;
                     contentFragment3.setArguments(bd);
                     transaction.replace(R.id.content_frame, contentFragment3);
                     break;

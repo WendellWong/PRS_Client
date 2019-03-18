@@ -3,20 +3,23 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/text_view"
+
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textColor="#00ff00"
-        android:text="赞"/>
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/avatar"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="horizontal">
+    </ListView>
+
+    <Button
+        android:id="@+id/DoExchange"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/RequestExc"
+        android:background="#ff3f3f3f"
+        android:visibility="gone"/>
+
 </LinearLayout>
 
 
