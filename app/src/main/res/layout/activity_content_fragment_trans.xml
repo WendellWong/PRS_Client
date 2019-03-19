@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@android:id/list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="horizontal">
-    </ListView>
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </ListView>
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/DoExchange"
@@ -18,9 +25,10 @@
         android:layout_height="match_parent"
         android:text="@string/RequestExc"
         android:background="#ff3f3f3f"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_alignBottom="@android:id/list"/>
 
-</LinearLayout>
+</RelativeLayout>
 
 
 

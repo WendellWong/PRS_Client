@@ -22,7 +22,7 @@
         android:id="@+id/functionButton"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:text="@string/unlock" />
+        android:text="TextView" />
 
 
 

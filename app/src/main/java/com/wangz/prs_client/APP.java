@@ -80,9 +80,6 @@ public class APP extends AppCompatActivity {
             FragmentManager fragmentManager =getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-//            Fragment contentFragment = new ContentFragmentManager( ) ;  //新建Fragment
-//            contentFragment.setArguments(bd);
-//            transaction.replace(R.id.content_frame, contentFragment);
 
             //替换Fragment
             switch ((String)bd.get(selected_item)){
@@ -101,7 +98,7 @@ public class APP extends AppCompatActivity {
                     transaction.replace(R.id.content_frame, contentFragment1);
                     break;
                 case "发现":
-                    Fragment contentFragment2 = new ContentFragment( ) ;
+                    Fragment contentFragment2 = new TestTrans( ) ;
                     contentFragment2.setArguments(bd);
                     transaction.replace(R.id.content_frame, contentFragment2);
                     break;
