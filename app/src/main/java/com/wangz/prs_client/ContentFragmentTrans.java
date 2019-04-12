@@ -3,6 +3,7 @@ package com.wangz.prs_client;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,13 +25,21 @@ public class ContentFragmentTrans extends ListFragment {
 
     ListView list;
     private SimpleAdapter adapter;
-
+    private Button button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_content_fragment_trans, container, false);
         list =  view.findViewById(android.R.id.list);
+        button =(Button)view.findViewById(R.id.DoExchange);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),DoExchange.class);
+                getActivity().startActivity(intent);
+            }
+        });
         return view ;
     }
 
@@ -50,13 +59,13 @@ public class ContentFragmentTrans extends ListFragment {
 //        list.addFooterView(buttonFooter);
 
 
-        String[] listItem ={"1","2","3","4","5"};
-        String[] listItem2 ={"1","2","3","4","5"};
-        int[] iconItem = {R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo};
-        int[] iconItem2 = {R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo};
-        int[] listExclog ={R.drawable.discover,R.drawable.discover,R.drawable.discover,R.drawable.discover,R.drawable.discover};
-        String[] listButton1 ={getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange)};
-        String[] listButton2 ={getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel)};
+        String[] listItem ={"1","2","3","4","5","6","7","8"};
+        String[] listItem2 ={"1","2","3","4","5","6","7","8"};
+        int[] iconItem = {R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo};
+        int[] iconItem2 = {R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo};
+        int[] listExclog ={R.drawable.discover,R.drawable.discover,R.drawable.discover,R.drawable.discover,R.drawable.discover,R.drawable.discover,R.drawable.discover,R.drawable.discover};
+        String[] listButton1 ={getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange),getString(R.string.doexchange)};
+        String[] listButton2 ={getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel),getString(R.string.cancel)};
 //        for (int i=0;i<5;i++){
 ////            listItem[i]=ContentFragmentManager.payload.get(i).getName();
 //            iconItem[i]= R.drawable.logo;
@@ -80,7 +89,7 @@ public class ContentFragmentTrans extends ListFragment {
 
     private List<? extends Map<String, ?>> getData(String[] strs, int[] icon, int[] exlog,String[] strs2, int[] icon2,String[] butt1,String[] butt2) {
         List<Map<String, Object>> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             Map<String, Object> map = new HashMap<>();
             map.put("name", strs[i]);
             map.put("icon", icon[i]);

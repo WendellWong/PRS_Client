@@ -98,7 +98,7 @@ public class APP extends AppCompatActivity {
                     transaction.replace(R.id.content_frame, contentFragment1);
                     break;
                 case "发现":
-                    Fragment contentFragment2 = new TestTrans( ) ;
+                    Fragment contentFragment2 = new ContentFragment( ) ;
                     contentFragment2.setArguments(bd);
                     transaction.replace(R.id.content_frame, contentFragment2);
                     break;
