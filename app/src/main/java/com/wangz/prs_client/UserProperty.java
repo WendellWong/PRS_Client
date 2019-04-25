@@ -87,6 +87,9 @@ public class UserProperty {
     private int occupier;
     private int location;
     private int status;
+    private  String starttime;
+    private  String endtime;
+    private  String appendixinfo;
 
     public int getId() {
         return id;
@@ -98,6 +101,26 @@ public class UserProperty {
 
     public String getName() {
         return name;
+    }
+    public String getAppendixinfo() {
+        return appendixinfo;
+    }
+    public void setAppendixinfo(String appendixinfo) {
+        this.appendixinfo = appendixinfo;
+    }
+
+    public String getStarttime() {
+        return starttime;
+    }
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
     }
 
     public void setName(String name) {

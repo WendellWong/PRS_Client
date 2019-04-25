@@ -121,18 +121,18 @@ public class Login extends Activity {                 //登录界面活动
                         String jsonobj = obj.toString();
                         RequestBody body = RequestBody.create(JSON, jsonobj);
                         Request request = new Request.Builder()
-                                .url("http://47.100.99.193:80/php/user/Login.php")
+                                .url("http://47.100.99.193/api/web/user/login")
                                 .post(body)
                                 .build();
                         Response response = client.newCall(request).execute();
                         String responseData = response.body().string();
-//            parseJsonWithJsonObject(responseData);
                         JSONObject jsonObject = new JSONObject(responseData);
-                        String result = jsonObject.getString("result");
-//                        userData userData =new userData();
-                        userData.setJwt(jsonObject.getString("jwt")) ;                            //获取jwt
+                        String status = jsonObject.getString("status");
+                        String payloadjwtuser = jsonObject.getString("payload");
+                        JSONObject payloadju = new JSONObject(payloadjwtuser);
+                        userData.setJwt(payloadju.getString("jwt")) ;                            //获取jwt
        //获取userData
-                        String userString =jsonObject.getString("user");
+                        String userString =payloadju.getString("user");
                         JSONObject jsonuser = new JSONObject(userString);
                         userData.setId(jsonuser.getInt("id"));
                         userData.setStdId(jsonuser.getInt("stdId"));
@@ -140,7 +140,7 @@ public class Login extends Activity {                 //登录界面活动
                         userData.setEmail(jsonuser.getString("email"));
                         userData.setPhone(jsonuser.getInt("phone"));
                         userData.setRole(jsonuser.getInt("role"));
-                        if (result.equals("success")) {                                             //返回1说明用户名和密码均正确
+                        if (status.equals("200")) {                                             //返回1说明用户名和密码均正确
                             //保存用户名和密码
                             editor.putString("USER_NAME", userName);
                             editor.putString("PASSWORD", userPwd);

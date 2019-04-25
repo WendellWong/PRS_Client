@@ -90,33 +90,26 @@ public class Register extends AppCompatActivity {
                         try{
                             OkHttpClient client =new OkHttpClient();
                             JSONObject obj = new JSONObject();
+                            obj.put("name",userName);
                             obj.put("stdId",userStdId);
-                            obj.put("username",userName);
-                            obj.put("password",userPwd);
-                            obj.put("email",userEmail);
                             obj.put("phone",userPhone);
+                            obj.put("email",userEmail);
+                            obj.put("password",userPwd);
                             String jsonobj=obj.toString();
                             RequestBody body =  RequestBody.create(JSON ,jsonobj);
                             Request request =new Request.Builder()
-                                    .url("http://47.100.99.193:80/php/user/Register.php")
+                                    .url("http://47.100.99.193/api/web/user/register")
                                     .post(body)
                                     .build();
                             Response response = client.newCall(request).execute();
                             String responseData = response.body().string();
-//            parseJsonWithJsonObject(responseData);
                             //解析jason
                             JSONObject jsonObject=new JSONObject(responseData);
-                            String result=jsonObject.getString("result");
-                            String jwt =jsonObject.getString("jwt");            //获取jwt
-//                            //获取userData
-//                            userData userData =new userData();
-//                            userData.setId(jsonObject.getInt("id"));
-//                            userData.setStdId(jsonObject.getInt("stdId"));
-//                            userData.setName(jsonObject.getString("name"));
-//                            userData.setEmail(jsonObject.getString("email"));
-//                            userData.setPhone(jsonObject.getInt("phone"));
-//                            userData.setRole(jsonObject.getInt("role"));
-                            if (!result.equals("success")) {
+                            String status=jsonObject.getString("status");
+                            String payloaduser = jsonObject.getString("payload");
+                            JSONObject payloadjwtuser= new JSONObject(payloaduser);
+                            String jwt =payloadjwtuser.getString("jwt");            //获取jwt
+                            if (!status.equals("200")) {
                                 Looper.prepare();
                                 Toast.makeText(getBaseContext(), getString(R.string.register_fail),Toast.LENGTH_SHORT).show();
                                 Looper.loop();

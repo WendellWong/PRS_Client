@@ -38,6 +38,7 @@ public class ContentFragmentManager extends ListFragment {
 
 
 
+
         @Override
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,21 +63,17 @@ public class ContentFragmentManager extends ListFragment {
 
                     try {
                         OkHttpClient client = new OkHttpClient();
-                        JSONObject obj = new JSONObject();
-                        String pos ="0";
-                        obj.put("jwt", Login.userData.getJwt());
-                        obj.put("pos",pos);
-                        String jsonobj = obj.toString();
-                        RequestBody body = RequestBody.create(JSON, jsonobj);
+                        String jwt = Login.userData.getJwt();
                         Request request = new Request.Builder()
-                            .url("http://47.100.99.193:80/php/query/UserProperty.php")
-                            .post(body)
+                            .url("http://47.100.99.193/api/web/property/list-my")
+                            .addHeader("Authorization","Bearer " + jwt)
+                            .get()
                             .build();
                         Response response = client.newCall(request).execute();
                         String responseData = response.body().string();
                         JSONObject jsonObject = new JSONObject(responseData);
-                        String result = jsonObject.getString("result");
-                        if(result.equals("success")){
+                        String status = jsonObject.getString("status");
+                        if(status.equals("200")){
                             UserProperty userProperty = new UserProperty();
                             String propertyString = jsonObject.getString("payload");
                             JSONArray propertyArray = new JSONArray(propertyString);
@@ -93,13 +90,26 @@ public class ContentFragmentManager extends ListFragment {
                                 payload.add(payloadBean);
                             }
                         }
-                        else if(result.equals("fail")){
-                            String failcode =jsonObject.getString("code");
-                            if(failcode.equals("74")){
+                        else if(status.equals("404")){
                                 Looper.prepare();
-                                Toast.makeText(getContext(), getString(R.string.noproperty), Toast.LENGTH_SHORT).show();  //没有物品提示
+                                Toast.makeText(getContext(), getString(R.string.e404), Toast.LENGTH_SHORT).show();  //没有物品提示
                                 Looper.loop();
-                            }
+                        }else if(status.equals("400")){
+                            Looper.prepare();
+                            Toast.makeText(getContext(), getString(R.string.e400), Toast.LENGTH_SHORT).show();  //没有物品提示
+                            Looper.loop();
+                        }else if(status.equals("401")){
+                            Looper.prepare();
+                            Toast.makeText(getContext(), getString(R.string.e401), Toast.LENGTH_SHORT).show();  //没有物品提示
+                            Looper.loop();
+                        }else if(status.equals("500")){
+                            Looper.prepare();
+                            Toast.makeText(getContext(), getString(R.string.e500), Toast.LENGTH_SHORT).show();  //没有物品提示
+                            Looper.loop();
+                        }else if(status.equals("501")){
+                            Looper.prepare();
+                            Toast.makeText(getContext(), getString(R.string.e501), Toast.LENGTH_SHORT).show();  //没有物品提示
+                            Looper.loop();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -156,5 +166,7 @@ public class ContentFragmentManager extends ListFragment {
         public void onAttach(Activity activity) {
             super.onAttach(activity);
         }
+
+
 
 }

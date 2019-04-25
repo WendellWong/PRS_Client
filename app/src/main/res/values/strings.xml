@@ -20,6 +20,12 @@
     <string name="doexchange">交易</string>
     <string name="cancel">取消</string>
     <string name="RequestExc">发起交易</string>
+    <string name="DoExcSuccess">交易发起成功</string>
+    <string name="e404">404 Not Found</string>
+    <string name="e400">error 400</string>
+    <string name="e401">error 401</string>
+    <string name="e500">error 500</string>
+    <string name="e501">error 501</string>
     <string name="test">test</string>
 
 </resources>
